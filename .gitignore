@@ -1,0 +1,3 @@
+# local rollback snapshots, not for publishing
+polishline-landing--v*.html
+.DS_Store
