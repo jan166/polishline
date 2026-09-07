@@ -2130,6 +2130,18 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
     if (has('edit')) setEditing(true);
   }
 
+  /* Adding #edit to a page that is already open changes the hash without
+     reloading, so honour it here too. */
+  window.addEventListener('hashchange', function(){
+    if (has('edit')){
+      openBar();
+      if (!editing) setEditing(true);
+    } else if (has('clean') && !ON_DISK){
+      if (editing) setEditing(false);
+      edbar.hidden = true;
+    }
+  });
+
   document.addEventListener('keydown', function(e){
     if (!(e.metaKey || e.ctrlKey) || e.altKey) return;
     if (e.key !== 'e' && e.key !== 'E') return;
