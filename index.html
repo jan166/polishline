@@ -541,18 +541,18 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
 
 /* ── the running demonstration ───────────────────────────── */
 /* no auto side margins: in a flex column they switch off the stretch */
-.tour{padding:22px 0 0;display:flex;flex-direction:column;gap:11px}
-.tour__head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.tour__chapter{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
-.tour__feat{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-3)}
-.tour__cap{font-size:15.5px;line-height:1.55;color:var(--ink-2);max-width:84ch;min-height:2.5em}
-.tour__bar{display:flex;align-items:center;gap:18px}
-.tour__dots{display:flex;gap:4px;flex:1;min-width:0}
-.tour__dots button{height:3px;flex:1;max-width:44px;min-width:8px;padding:0;border-radius:99px;
+.tour{padding:24px 0 0;display:flex;flex-direction:column;gap:9px}
+.tour__cap{font-size:17px;line-height:1.5;letter-spacing:-.012em;color:var(--ink);
+  max-width:72ch;min-height:2.4em}
+.tour__feats{max-width:72ch}
+.tour__feat{font-size:13px;line-height:1.5;color:var(--ink-3)}
+.tour__bar{display:flex;align-items:center;gap:18px;margin-top:5px}
+.tour__dots{display:flex;gap:5px;flex:1;min-width:0}
+.tour__dots button{width:26px;height:3px;flex:0 0 auto;padding:0;border-radius:99px;
   background:var(--line-2);transition:background .2s}
 .tour__dots button:hover{background:var(--ink-3)}
 .tour__dots button.is-done{background:var(--ink-3)}
-.tour__dots button.is-now{background:var(--ink)}
+.tour__dots button.is-now{background:var(--ink);width:34px}
 .tour__more{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:13.5px;font-weight:500;
   color:var(--ink-2);border-bottom:1px solid var(--line-2);padding-bottom:1px}
 .tour__more:hover{color:var(--ink);border-bottom-color:var(--ink)}
@@ -598,9 +598,8 @@ body.modal-open{overflow:hidden}
 
 @media (max-width:760px){
   .tour{padding-top:18px}
-  .tour__cap{font-size:14px;min-height:3.6em}
-  .tour__head{gap:8px}
-  .tour__feat{font-size:10.5px}
+  .tour__cap{font-size:15px;min-height:3.5em}
+  .tour__feat{font-size:12px}
   .modal{padding:14px}
   .modal__box{max-height:88vh}
 }
@@ -935,16 +934,6 @@ body.modal-open{overflow:hidden}
 
       <!-- what you are watching -->
       <div class="tour">
-        <div class="tour__head">
-          <p class="tour__chapter" data-chapter="explore"  data-k="k265" data-en="Explore in context">Explore in context</p>
-          <p class="tour__chapter" data-chapter="guide"  data-k="k266" data-en="Guide the translation">Guide the translation</p>
-          <p class="tour__chapter" data-chapter="revise"  data-k="k267" data-en="Revise with control">Revise with control</p>
-
-          <p class="tour__feat" data-chapter="explore"  data-k="k268" data-en="Ask &middot; context scope &middot; linked passages &middot; Research">Ask &middot; context scope &middot; linked passages &middot; Research</p>
-          <p class="tour__feat" data-chapter="guide"  data-k="k269" data-en="Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish">Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish</p>
-          <p class="tour__feat" data-chapter="revise"  data-k="k270" data-en="Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare">Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare</p>
-        </div>
-
         <p class="tour__cap" data-cap="1"  data-k="k271" data-en="Select any phrase, on either side.">Select any phrase, on either side.</p>
         <p class="tour__cap" data-cap="2"  data-k="k272" data-en="Choose how much context the question may use.">Choose how much context the question may use.</p>
         <p class="tour__cap" data-cap="3"  data-k="k273" data-en="Its linked source passage highlights with it &mdash; here two Lines became one.">Its linked source passage highlights with it &mdash; here two Lines became one.</p>
@@ -957,6 +946,13 @@ body.modal-open{overflow:hidden}
         <p class="tour__cap" data-cap="10"  data-k="k280" data-en="Apply it, dismiss it, or ask why it was proposed.">Apply it, dismiss it, or ask why it was proposed.</p>
         <p class="tour__cap" data-cap="11"  data-k="k281" data-en="Every change stays on the record, with the reason beside it.">Every change stays on the record, with the reason beside it.</p>
         <p class="tour__cap" data-cap="12"  data-k="k282" data-en="Save a version, compare it, or return to it later.">Save a version, compare it, or return to it later.</p>
+
+        <div class="tour__feats">
+
+          <p class="tour__feat" data-chapter="explore"  data-k="k268" data-en="Ask &middot; context scope &middot; linked passages &middot; Research">Ask &middot; context scope &middot; linked passages &middot; Research</p>
+          <p class="tour__feat" data-chapter="guide"  data-k="k269" data-en="Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish">Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish</p>
+          <p class="tour__feat" data-chapter="revise"  data-k="k270" data-en="Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare">Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare</p>
+        </div>
 
         <div class="tour__bar">
           <div class="tour__dots" role="group" aria-label="Demonstration steps"></div>
@@ -2091,19 +2087,23 @@ body.modal-open{overflow:hidden}
     return false;
   }
 
+  /* The tabs carry the chapter, so these only have to carry the step
+     inside it: four ticks rather than a bar of twelve. */
+  var CH_LEN = 4;
+
   function buildDots(){
     if (!dotWrap) return;
-    for (var i = 1; i <= LAST_STEP; i++){
+    for (var i = 0; i < CH_LEN; i++){
       var b = document.createElement('button');
       b.type = 'button';
-      b.setAttribute('data-goto', String(i));
-      b.setAttribute('aria-label', 'Step ' + i);
+      b.setAttribute('data-tick', String(i));
+      b.setAttribute('aria-label', 'Step ' + (i + 1) + ' of ' + CH_LEN);
       dotWrap.appendChild(b);
     }
     dotWrap.addEventListener('click', function(e){
-      var b = e.target.closest ? e.target.closest('[data-goto]') : null;
+      var b = e.target.closest ? e.target.closest('[data-tick]') : null;
       if (!b) return;
-      setStep(+b.getAttribute('data-goto'));
+      setStep(CHAPTERS[chapterOf(step)].from + (+b.getAttribute('data-tick')));
     });
   }
 
@@ -2136,11 +2136,14 @@ body.modal-open{overflow:hidden}
       b.setAttribute('aria-selected', String(b.getAttribute('data-view') === ch));
     });
     if (typeof closePop === 'function') closePop();
-    if (dotWrap) dotWrap.querySelectorAll('[data-goto]').forEach(function(b){
-      var i = +b.getAttribute('data-goto');
-      b.classList.toggle('is-now', i === n);
-      b.classList.toggle('is-done', i < n);
-    });
+    if (dotWrap){
+      var within = n - CHAPTERS[ch].from;
+      dotWrap.querySelectorAll('[data-tick]').forEach(function(b){
+        var i = +b.getAttribute('data-tick');
+        b.classList.toggle('is-now', i === within);
+        b.classList.toggle('is-done', i < within);
+      });
+    }
   }
 
   /* Reading is not the same as switching it off: anything that asks for
