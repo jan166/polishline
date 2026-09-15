@@ -2066,7 +2066,8 @@ body.modal-open{overflow:hidden}
     9:'review', 10:'review', 11:'versions', 12:'versions'
   };
 
-  var step = 1, tourTimer = null, tourPaused = false, tourStopped = false;
+  var step = 1, tourTimer = null;
+  var hoverHold = false, popHold = false, modalHold = false;
   var viewTabs = app.querySelectorAll('[data-view]');
   var dotWrap = app.querySelector('.tour__dots');
   var modal = document.getElementById('tourModal');
@@ -2102,8 +2103,6 @@ body.modal-open{overflow:hidden}
     dotWrap.addEventListener('click', function(e){
       var b = e.target.closest ? e.target.closest('[data-goto]') : null;
       if (!b) return;
-      tourStopped = true;
-      stopTour();
       setStep(+b.getAttribute('data-goto'));
     });
   }
@@ -2144,33 +2143,32 @@ body.modal-open{overflow:hidden}
     });
   }
 
-  function stopTour(){
-    if (tourTimer) clearInterval(tourTimer);
-    tourTimer = null;
+  /* Reading is not the same as switching it off: anything that asks for
+     attention holds the tour, and it carries on when that is done. */
+  function tourHeld(){
+    return hoverHold || popHold || modalHold || editing;
   }
   function playTour(){
-    stopTour();
-    if (tourStopped || calm) return;
+    if (tourTimer || calm) return;
     tourTimer = setInterval(function(){
-      if (!tourPaused && !editing) setStep(step + 1);
+      if (!tourHeld()) setStep(step + 1);
     }, 3600);
   }
 
   /* hovering is reading, not taking over: it pauses and gives back */
   var stage = app.querySelector('.mock');
   if (stage){
-    stage.addEventListener('pointerenter', function(){ tourPaused = true; });
-    stage.addEventListener('pointerleave', function(){ tourPaused = false; });
-    stage.addEventListener('focusin', function(){ tourPaused = true; });
-    stage.addEventListener('focusout', function(){ tourPaused = false; });
+    stage.addEventListener('pointerenter', function(){ hoverHold = true; });
+    stage.addEventListener('pointerleave', function(){ hoverHold = false; });
+    stage.addEventListener('focusin', function(){ hoverHold = true; });
+    stage.addEventListener('focusout', function(){ hoverHold = false; });
   }
 
   viewTabs.forEach(function(b){
     b.addEventListener('click', function(){
       var ch = CHAPTERS[b.getAttribute('data-view')];
       if (!ch) return;
-      setStep(ch.from);
-      playTour();          /* a chapter jump keeps it running */
+      setStep(ch.from);     /* a chapter jump keeps it running */
     });
   });
 
@@ -2179,7 +2177,7 @@ body.modal-open{overflow:hidden}
     if (!modal) return;
     modal.hidden = false;
     document.body.classList.add('modal-open');
-    tourPaused = true;
+    modalHold = true;
     var x = modal.querySelector('.modal__x');
     if (x) x.focus();
   }
@@ -2187,7 +2185,7 @@ body.modal-open{overflow:hidden}
     if (!modal || modal.hidden) return;
     modal.hidden = true;
     document.body.classList.remove('modal-open');
-    tourPaused = false;
+    modalHold = false;
   }
   /* ── hotspots ─────────────────────────────────────────────
      A pulsing mark on a region of the workspace, answering what that
@@ -2201,6 +2199,7 @@ body.modal-open{overflow:hidden}
     pop.hidden = true;
     if (openSpot) openSpot.classList.remove('is-open');
     openSpot = null;
+    popHold = false;      /* done reading: the demonstration carries on */
   }
 
   function placePop(spot){
@@ -2228,8 +2227,7 @@ body.modal-open{overflow:hidden}
     placePop(spot);
     spot.classList.add('is-open');
     openSpot = spot;
-    tourStopped = true;
-    stopTour();
+    popHold = true;       /* hold the step the popover is pointing at */
   }
 
   app.addEventListener('click', function(e){
