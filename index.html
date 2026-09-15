@@ -98,7 +98,7 @@ svg{display:block}
 .ser{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
 
-.d1{font-size:clamp(30px,5.6vw,60px);line-height:1.14;font-weight:700;letter-spacing:-.028em;text-wrap:balance}
+.d1{font-size:clamp(27px,4.1vw,50px);line-height:1.14;font-weight:700;letter-spacing:-.03em;text-wrap:balance}
 .d2{font-size:clamp(24px,3.6vw,40px);line-height:1.2;font-weight:700;letter-spacing:-.024em;text-wrap:balance}
 .d3{font-size:clamp(21px,2.4vw,29px);line-height:1.3;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
 .d4{font-size:clamp(17px,1.5vw,20px);line-height:1.42;font-weight:600;letter-spacing:-.014em}
@@ -400,7 +400,7 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
   .val__shot{min-width:100%}
 }
 @media (max-width:560px){
-  .hero{padding-bottom:64px}
+  .hero{padding-bottom:0}
   .hero__top{padding-top:40px}
   .hero__grid-outer{margin-top:44px}
   .marq{padding-bottom:64px}
@@ -423,7 +423,7 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
 
 
 /* ── hero mockup: the workspace itself ──────────────────── */
-.mock{background:var(--bg);padding:26px 24px 64px}
+.mock{background:var(--bg);padding:26px 24px 72px}
 .mock__inner{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 .mock__eyebrow{text-align:center;color:var(--ink-3)}
 .mock__cap{max-width:74ch;margin:0 auto;text-align:center}
@@ -538,6 +538,76 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
   .ln__t{font-size:11.5px}
 }
 
+
+/* ── the running demonstration ───────────────────────────── */
+/* no auto side margins: in a flex column they switch off the stretch */
+.tour{padding:22px 0 0;display:flex;flex-direction:column;gap:11px}
+.tour__head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.tour__chapter{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.tour__feat{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;color:var(--ink-3)}
+.tour__cap{font-size:15.5px;line-height:1.55;color:var(--ink-2);max-width:84ch;min-height:2.5em}
+.tour__bar{display:flex;align-items:center;gap:18px}
+.tour__dots{display:flex;gap:4px;flex:1;min-width:0}
+.tour__dots button{height:3px;flex:1;max-width:44px;min-width:8px;padding:0;border-radius:99px;
+  background:var(--line-2);transition:background .2s}
+.tour__dots button:hover{background:var(--ink-3)}
+.tour__dots button.is-done{background:var(--ink-3)}
+.tour__dots button.is-now{background:var(--ink)}
+.tour__more{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;font-size:13.5px;font-weight:500;
+  color:var(--ink-2);border-bottom:1px solid var(--line-2);padding-bottom:1px}
+.tour__more:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.tour__more::after{content:"\2192";transition:transform .16s}
+.tour__more:hover::after{transform:translateX(3px)}
+
+/* what the current step is pointing at */
+.is-hl{position:relative;z-index:2}
+.cell.is-hl{background:color-mix(in srgb,var(--t2-ink) 8%,transparent)}
+.cell--tgt.is-hl{background:color-mix(in srgb,var(--t2-ink) 15%,transparent)}
+.abtn.is-hl,.scope.is-hl,.grule.is-hl,.scard__acts.is-hl{
+  outline:2px solid var(--t2-ink);outline-offset:4px;border-radius:8px}
+.sel{border-radius:2px;padding:0 2px;transition:background .25s}
+.app[data-ch="explore"] .sel{background:color-mix(in srgb,var(--t2-ink) 26%,transparent)}
+
+/* guidance rows */
+.scope{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.scope__l{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.chip2{font-size:10px;padding:1.5px 7px;border-radius:999px;border:.5px solid var(--line-2);
+  color:var(--ink-3);white-space:nowrap}
+.chip2.is-on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.grule{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.grule__m{display:flex;gap:4px;flex-wrap:wrap}
+
+/* ── deeper explanation ──────────────────────────────────── */
+.modal{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;padding:24px}
+.modal__scrim{position:absolute;inset:0;background:rgba(9,14,21,.52)}
+.modal__box{position:relative;width:min(700px,100%);max-height:84vh;overflow-y:auto;background:var(--bg);
+  border:.5px solid var(--line-2);border-radius:16px;box-shadow:0 30px 70px -22px rgba(15,22,32,.55)}
+.modal__hd{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:18px 20px 14px;background:var(--bg);border-bottom:.5px solid var(--line)}
+.modal__t{font-size:15.5px;font-weight:700;letter-spacing:-.018em}
+.modal__x{flex-shrink:0;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--ink-3)}
+.modal__x:hover{background:var(--bg-3);color:var(--ink)}
+.modal__x svg{width:18px;height:18px}
+.modal__body{padding:17px 20px 24px;display:flex;flex-direction:column;gap:17px}
+.modal__lead{font-size:14.5px;line-height:1.62;color:var(--ink-2)}
+.modal__map{margin:0;display:flex;flex-direction:column;gap:13px}
+.modal__map dt{font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:4px}
+.modal__map dd{margin:0;font-size:14px;line-height:1.62;color:var(--ink-2)}
+body.modal-open{overflow:hidden}
+
+@media (max-width:760px){
+  .tour{padding-top:18px}
+  .tour__cap{font-size:14px;min-height:3.6em}
+  .tour__head{gap:8px}
+  .tour__feat{font-size:10.5px}
+  .modal{padding:14px}
+  .modal__box{max-height:88vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .tour__dots button{transition:none}
+}
+
 /* ── edit mode: outline panel, block chips ──────────────── */
 .edbar__sep{width:1px;height:20px;background:var(--line);flex-shrink:0}
 .edbtn--ghost{border-color:transparent}
@@ -605,9 +675,9 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
       <b>Polishline</b><span class="ser"  data-k="k0" data-en="bilingual revision">bilingual revision</span>
     </a>
     <nav class="nav">
-      <a href="#manuscript"  data-k="k1" data-en="Manuscript">Manuscript</a>
-      <a href="#terms"  data-k="k2" data-en="Terminology">Terminology</a>
-      <a href="#history"  data-k="k3" data-en="History">History</a>
+      <a href="#manuscript"  data-k="k1" data-en="Explore">Explore</a>
+      <a href="#terms"  data-k="k2" data-en="Guide">Guide</a>
+      <a href="#history"  data-k="k3" data-en="Revise">Revise</a>
       <a href="#pricing"  data-k="k4" data-en="Pricing">Pricing</a>
       <a href="#safety"  data-k="k5" data-en="Safety">Safety</a>
       <a href="#faq"  data-k="k6" data-en="FAQ">FAQ</a>
@@ -620,9 +690,9 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
 
 <div class="pills-fixed" id="pillsFixed" aria-hidden="true">
   <div class="pills">
-    <button type="button" data-go="#manuscript"  data-k="k8" data-en="Manuscript">Manuscript</button>
-    <button type="button" data-go="#terms"  data-k="k9" data-en="Terminology">Terminology</button>
-    <button type="button" data-go="#history"  data-k="k10" data-en="History">History</button>
+    <button type="button" data-go="#manuscript"  data-k="k8" data-en="Explore">Explore</button>
+    <button type="button" data-go="#terms"  data-k="k9" data-en="Guide">Guide</button>
+    <button type="button" data-go="#history"  data-k="k10" data-en="Revise">Revise</button>
   </div>
 </div>
 
@@ -632,27 +702,23 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
   <section class="hero" data-sec="hero">
     <div class="hero__top">
       <h1 class="d1"  data-k="k11" data-en="Translate in context. Keep every decision.">Translate in context. Keep every decision.</h1>
-      <p class="lead"  data-k="k12" data-en="Your source, translation, guidance, questions, and revisions stay in one place, so AI helps without taking over your text.">Your source, translation, guidance, questions, and revisions stay in one place, so AI helps without taking over your text.</p>
-      <a class="btn btn--fill" href="#pricing"  data-k="k224" data-en="Start free">Start free</a>
+      <p class="lead"  data-k="k12" data-en="A bilingual revision workspace that keeps your source, translation, guidance, questions and revisions together.">A bilingual revision workspace that keeps your source, translation, guidance, questions and revisions together.</p>
     </div>
 
     <div class="hero__tabsrow">
-      <div class="hero__tabs" role="tablist" aria-label="Pick the part of the job">
-        <button type="button" role="tab" aria-selected="true"  data-view="manuscript"  data-k="k225" data-en="Manuscript">Manuscript</button>
-        <button type="button" role="tab" aria-selected="false" data-view="terms"  data-k="k226" data-en="Terminology">Terminology</button>
-        <button type="button" role="tab" aria-selected="false" data-view="history"  data-k="k227" data-en="History">History</button>
+      <div class="hero__tabs" role="tablist" aria-label="What the workspace does">
+        <button type="button" role="tab" aria-selected="true"  data-view="explore"  data-k="k225" data-en="Explore in context">Explore in context</button>
+        <button type="button" role="tab" aria-selected="false" data-view="guide"  data-k="k226" data-en="Guide the translation">Guide the translation</button>
+        <button type="button" role="tab" aria-selected="false" data-view="revise"  data-k="k227" data-en="Revise with control">Revise with control</button>
       </div>
     </div>
   </section>
 
-  <!-- workspace mockup, driven by the hero tabs -->
+  <!-- workspace mockup: a running demonstration, driven by the hero tabs -->
   <section class="mock" data-sec="mockup">
     <div class="mock__inner">
-      <p class="eyebrow mock__eyebrow" data-view-for="manuscript"  data-k="k228" data-en="When you polish a first pass">When you polish a first pass</p>
-      <p class="eyebrow mock__eyebrow" data-view-for="terms" hidden  data-k="k229" data-en="When you settle a term">When you settle a term</p>
-      <p class="eyebrow mock__eyebrow" data-view-for="history" hidden  data-k="k230" data-en="When you take a step back">When you take a step back</p>
 
-      <figure class="app">
+      <figure class="app" id="app-demo">
         <div class="app__bar">
           <span class="app__dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="app__title">
@@ -660,9 +726,9 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
             <span class="app__pair"  data-k="k185" data-en="ES &rarr; EN">ES &rarr; EN</span>
           </span>
           <span class="app__acts">
-            <span class="abtn abtn--go"  data-k="k186" data-en="Draft">Draft</span>
+            <span class="abtn abtn--go" data-hl="8"  data-k="k186" data-en="Draft">Draft</span>
             <span class="abtn"  data-k="k187" data-en="Polish">Polish</span>
-            <span class="abtn"  data-k="k188" data-en="Review">Review</span>
+            <span class="abtn" data-hl="9"  data-k="k188" data-en="Review">Review</span>
             <span class="sep" aria-hidden="true"></span>
             <span class="abtn"  data-k="k189" data-en="Export">Export</span>
             <span class="abtn"  data-k="k190" data-en="Share">Share</span>
@@ -684,76 +750,107 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
               <span class="ln__m"><span class="tag tag--done"><i></i><span  data-k="k195" data-en="Drafted">Drafted</span></span></span>
             </div>
 
-            <div class="cell cell--src"><p class="ln__t"  data-k="k196" data-en="Esa pr&aacute;ctica se endurece en costumbre,">Esa pr&aacute;ctica se endurece en costumbre,</p></div>
-            <div class="cell cell--gut" style="grid-row:span 2" aria-hidden="true">
+            <div class="cell cell--src" data-hl="3,4"><p class="ln__t"  data-k="k196" data-en="Esa pr&aacute;ctica se endurece en costumbre,">Esa pr&aacute;ctica se endurece en costumbre,</p></div>
+            <div class="cell cell--gut" style="grid-row:span 2" data-hl="3,4" aria-hidden="true">
               <svg class="brk" viewBox="0 0 24 100" preserveAspectRatio="none" stroke="currentColor" aria-hidden="true"><path d="M3 14h9v72H3M12 50h9" vector-effect="non-scaling-stroke"/></svg>
             </div>
-            <div class="cell cell--tgt" style="grid-row:span 2">
-              <p class="ln__t"  data-k="k197" data-en="That practice settles into convention, and convention rewrites memory again.">That practice settles into convention, and convention rewrites memory again.</p>
+            <div class="cell cell--tgt" style="grid-row:span 2" data-hl="1,2,3,4">
+              <p class="ln__t"  data-k="k197" data-en="That practice &lt;span class=&quot;sel&quot;&gt;settles into&lt;/span&gt; convention, and convention rewrites memory again.">That practice <span class="sel">settles into</span> convention, and convention rewrites memory again.</p>
               <span class="ln__m">
                 <span class="tag tag--edit"><i></i><span  data-k="k198" data-en="Edited">Edited</span></span>
-                <span class="small" style="font-size:10px"  data-k="k199" data-en="two lines joined">two lines joined</span>
+                <span class="small" style="font-size:10px"  data-k="k199" data-en="one linked passage, two source Lines">one linked passage, two source Lines</span>
               </span>
             </div>
-            <div class="cell cell--src"><p class="ln__t"  data-k="k200" data-en="y la costumbre reescribe la memoria.">y la costumbre reescribe la memoria.</p></div>
+            <div class="cell cell--src" data-hl="3,4"><p class="ln__t"  data-k="k200" data-en="y la costumbre reescribe la memoria.">y la costumbre reescribe la memoria.</p></div>
 
             <div class="cell cell--src cell--last"><p class="ln__t"  data-k="k201" data-en="El registro vuelve a invocar esa pr&aacute;ctica.">El registro vuelve a invocar esa pr&aacute;ctica.</p></div>
             <div class="cell cell--gut cell--last" aria-hidden="true">
               <svg class="brk" viewBox="0 0 24 40" preserveAspectRatio="none" stroke="currentColor" aria-hidden="true"><path d="M3 20h18" vector-effect="non-scaling-stroke"/></svg>
             </div>
-            <div class="cell cell--tgt cell--last">
-              <p class="ln__t"  data-k="k202" data-en="The record calls that &lt;span class=&quot;flagw&quot;&gt;custom&lt;/span&gt; back.">The record calls that <span class="flagw">custom</span> back.</p>
-              <span class="ln__m"><span class="tag tag--flag"><i></i><span  data-k="k203" data-en="Needs review">Needs review</span></span></span>
+            <div class="cell cell--tgt cell--last" data-hl="8,9,10">
+              <p class="ln__t" data-steps="1-9"  data-k="k202" data-en="The record calls that &lt;span class=&quot;flagw&quot;&gt;custom&lt;/span&gt; back.">The record calls that <span class="flagw">custom</span> back.</p>
+              <p class="ln__t" data-steps="10-12"  data-k="k248" data-en="The record calls that &lt;span class=&quot;term&quot;&gt;practice&lt;/span&gt; back.">The record calls that <span class="term">practice</span> back.</p>
+              <span class="ln__m" data-steps="8,9"><span class="tag tag--flag"><i></i><span  data-k="k203" data-en="Flagged">Flagged</span></span></span>
+              <span class="ln__m" data-steps="10-12"><span class="tag tag--edit"><i></i><span  data-k="k249" data-en="Edited">Edited</span></span></span>
             </div>
           </div>
 
           <aside class="side">
             <div class="side__tabs">
-              <span data-side-tab="ask" aria-selected="true"  data-k="k204" data-en="Ask">Ask</span>
+              <span data-side-tab="ask"  data-k="k204" data-en="Ask">Ask</span>
               <span data-side-tab="review"  data-k="k205" data-en="Review">Review</span>
-              <span data-side-tab="constraints"  data-k="k206" data-en="Constraints">Constraints</span>
+              <span data-side-tab="terms"  data-k="k206" data-en="Terms &amp; Guidance">Terms &amp; Guidance</span>
               <span data-side-tab="versions"  data-k="k207" data-en="Versions">Versions</span>
             </div>
 
-            <div class="side__body" data-view-for="manuscript">
-              <div class="scard">
+            <!-- Explore in context -->
+            <div class="side__body" data-steps="1-4">
+              <div class="scard" data-steps="1" >
                 <p class="scard__hd"  data-k="k231" data-en="Ask">Ask</p>
+                <p class="scard__t"  data-k="k250" data-en="Select a phrase on either side to ask about it.">Select a phrase on either side to ask about it.</p>
+              </div>
+              <div class="scard" data-steps="2-4">
+                <p class="scard__hd"  data-k="k251" data-en="Ask">Ask</p>
                 <p class="ask__q"  data-k="k232" data-en="Why settles into and not hardens into?">Why settles into and not hardens into?</p>
-                <p class="scard__t"  data-k="k233" data-en="Here endurece marks a process, not hardness. Settles into keeps that reading without adding a physical claim the source never makes.">Here endurece marks a process, not hardness. Settles into keeps that reading without adding a physical claim the source never makes.</p>
-                <p class="ask__basis"  data-k="k234" data-en="from line 2 &middot; your own wording kept">from line 2 &middot; your own wording kept</p>
+                <div class="scope" data-hl="2">
+                  <span class="scope__l"  data-k="k252" data-en="Context">Context</span>
+                  <span class="chip2"  data-k="k253" data-en="Passage">Passage</span>
+                  <span class="chip2 is-on"  data-k="k254" data-en="Paragraph">Paragraph</span>
+                  <span class="chip2"  data-k="k255" data-en="Document">Document</span>
+                </div>
+                <p class="scard__t" data-steps="4"  data-k="k233" data-en="endurece marks a process here, not hardness. Settles into keeps that reading without adding a physical claim the source never makes.">endurece marks a process here, not hardness. Settles into keeps that reading without adding a physical claim the source never makes.</p>
+                <p class="ask__basis" data-steps="4"  data-k="k234" data-en="from the linked passage &middot; 2 source Lines">from the linked passage &middot; 2 source Lines</p>
               </div>
             </div>
 
-            <div class="side__body" data-view-for="terms" hidden>
+            <!-- Guide the translation -->
+            <div class="side__body" data-steps="5-8">
               <div class="scard">
-                <p class="scard__hd"  data-k="k208" data-en="Constraints">Constraints</p>
-                <span class="rule"  data-k="k209" data-en="pr&aacute;ctica &rarr; practice">pr&aacute;ctica &rarr; practice</span>
-                <span class="rule rule--d"  data-k="k235" data-en="costumbre &rarr; convention">costumbre &rarr; convention</span>
-                <p class="scard__t"  data-k="k210" data-en="The last line renders it as custom. The rule you settled says practice.">The last line renders it as custom. The rule you settled says practice.</p>
+                <p class="scard__hd"  data-k="k208" data-en="Terms &amp; Guidance">Terms &amp; Guidance</p>
+                <p class="scard__t" data-steps="5"  data-k="k256" data-en="Set what to unify and what to keep apart, before the first draft.">Set what to unify and what to keep apart, before the first draft.</p>
+                <div class="grule" data-steps="6-8" data-hl="6">
+                  <span class="rule"  data-k="k209" data-en="pr&aacute;ctica &rarr; practice">pr&aacute;ctica &rarr; practice</span>
+                  <span class="grule__m"><span class="chip2 is-on"  data-k="k257" data-en="Always">Always</span><span class="chip2"  data-k="k258" data-en="Document">Document</span></span>
+                </div>
+                <div class="grule" data-steps="7-8" data-hl="7">
+                  <span class="rule rule--d"  data-k="k235" data-en="costumbre &rarr; convention">costumbre &rarr; convention</span>
+                  <span class="grule__m"><span class="chip2 is-on"  data-k="k259" data-en="Prefer">Prefer</span><span class="chip2"  data-k="k260" data-en="keep distinct">keep distinct</span></span>
+                </div>
               </div>
+              <div class="scard" data-steps="8">
+                <p class="scard__hd"  data-k="k261" data-en="1 line breaks a rule">1 line breaks a rule</p>
+                <p class="scard__t"  data-k="k210" data-en="The last Line renders pr&aacute;ctica as custom. Your rule says practice.">The last Line renders pr&aacute;ctica as custom. Your rule says practice.</p>
+              </div>
+            </div>
+
+            <!-- Revise with control -->
+            <div class="side__body" data-steps="9-10">
               <div class="scard">
                 <p class="scard__hd"  data-k="k211" data-en="Suggestion">Suggestion</p>
                 <div class="diff">
                   <span class="was"  data-k="k213" data-en="The record calls that custom back.">The record calls that custom back.</span>
                   <span class="now"  data-k="k214" data-en="The record calls that practice back.">The record calls that practice back.</span>
                 </div>
-                <div class="scard__acts">
+                <div class="scard__acts" data-hl="10">
                   <span class="go"  data-k="k215" data-en="Apply">Apply</span>
                   <span  data-k="k216" data-en="Dismiss">Dismiss</span>
+                  <span  data-k="k262" data-en="Explain">Explain</span>
                 </div>
+                <p class="ask__basis"  data-k="k263" data-en="never applied on its own">never applied on its own</p>
               </div>
             </div>
 
-            <div class="side__body" data-view-for="history" hidden>
+            <div class="side__body" data-steps="11-12">
               <div class="scard">
-                <p class="scard__hd"  data-k="k236" data-en="Versions &middot; line 042">Versions &middot; line 042</p>
+                <p class="scard__hd"  data-k="k236" data-en="Revisions &middot; this Line">Revisions &middot; this Line</p>
                 <div class="vtrail">
                   <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k237" data-en="16:04">16:04</b> <span  data-k="k238" data-en="suggestion applied">suggestion applied</span><br><span class="vsub"  data-k="k239" data-en="custom &rarr; practice">custom &rarr; practice</span></span></div>
-                  <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k240" data-en="15:51">15:51</b> <span  data-k="k241" data-en="rule set">rule set</span><br><span class="vsub"  data-k="k242" data-en="pr&aacute;ctica to practice &middot; unify">pr&aacute;ctica to practice &middot; unify</span></span></div>
+                  <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k240" data-en="15:51">15:51</b> <span  data-k="k241" data-en="rule set">rule set</span><br><span class="vsub"  data-k="k242" data-en="pr&aacute;ctica to practice &middot; Always">pr&aacute;ctica to practice &middot; Always</span></span></div>
                   <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k243" data-en="15:12">15:12</b> <span  data-k="k244" data-en="first pass">first pass</span></span></div>
                 </div>
-                <div class="scard__acts">
-                  <span  data-k="k245" data-en="Restore this version">Restore this version</span>
+                <div class="scard__acts" data-steps="12" data-hl="12">
+                  <span  data-k="k245" data-en="Saved version">Saved version</span>
+                  <span  data-k="k264" data-en="Compare">Compare</span>
                 </div>
               </div>
             </div>
@@ -765,15 +862,93 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
           <span class="dot" aria-hidden="true"></span>
           <span  data-k="k218" data-en="Saved">Saved</span>
           <span class="meter">
-            <span  data-k="k219" data-en="Monthly use">Monthly use</span>
+            <span  data-k="k219" data-en="Allowance">Allowance</span>
             <span class="meter__bar" aria-hidden="true"><i></i></span>
           </span>
         </div>
       </figure>
 
-      <figcaption class="small mock__cap" data-view-for="manuscript"  data-k="k220" data-en="Source on the left, your translation on the right. The gutter shows how the lines pair up &mdash; here two source lines became one. Ask about a line and the answer names what it is based on.">Source on the left, your translation on the right. The gutter shows how the lines pair up &mdash; here two source lines became one. Ask about a line and the answer names what it is based on.</figcaption>
-      <figcaption class="small mock__cap" data-view-for="terms" hidden  data-k="k246" data-en="Settle a word once and the rule holds for the whole manuscript. The line that breaks it is flagged, and the fix arrives as a suggestion you apply or dismiss.">Settle a word once and the rule holds for the whole manuscript. The line that breaks it is flagged, and the fix arrives as a suggestion you apply or dismiss.</figcaption>
-      <figcaption class="small mock__cap" data-view-for="history" hidden  data-k="k247" data-en="Every change on a line stays on the record, with the reason beside it. You can read back what you decided at 15:51, and put any version back.">Every change on a line stays on the record, with the reason beside it. You can read back what you decided at 15:51, and put any version back.</figcaption>
+      <!-- what you are watching -->
+      <div class="tour">
+        <div class="tour__head">
+          <p class="tour__chapter" data-chapter="explore"  data-k="k265" data-en="Explore in context">Explore in context</p>
+          <p class="tour__chapter" data-chapter="guide"  data-k="k266" data-en="Guide the translation">Guide the translation</p>
+          <p class="tour__chapter" data-chapter="revise"  data-k="k267" data-en="Revise with control">Revise with control</p>
+
+          <p class="tour__feat" data-chapter="explore"  data-k="k268" data-en="Ask &middot; context scope &middot; linked passages &middot; Research">Ask &middot; context scope &middot; linked passages &middot; Research</p>
+          <p class="tour__feat" data-chapter="guide"  data-k="k269" data-en="Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish">Terms &amp; Guidance &middot; Always, Prefer, Avoid &middot; scope &middot; Draft, Polish</p>
+          <p class="tour__feat" data-chapter="revise"  data-k="k270" data-en="Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare">Suggestions &middot; Revisions &middot; Saved versions &middot; Editions &middot; Compare</p>
+        </div>
+
+        <p class="tour__cap" data-cap="1"  data-k="k271" data-en="Select any phrase, on either side.">Select any phrase, on either side.</p>
+        <p class="tour__cap" data-cap="2"  data-k="k272" data-en="Choose how much context the question may use.">Choose how much context the question may use.</p>
+        <p class="tour__cap" data-cap="3"  data-k="k273" data-en="Its linked source passage highlights with it &mdash; here two Lines became one.">Its linked source passage highlights with it &mdash; here two Lines became one.</p>
+        <p class="tour__cap" data-cap="4"  data-k="k274" data-en="The answer names what it is based on, and stays an answer until you act on it.">The answer names what it is based on, and stays an answer until you act on it.</p>
+        <p class="tour__cap" data-cap="5"  data-k="k275" data-en="Guidance is set in the workspace, not typed again into a prompt.">Guidance is set in the workspace, not typed again into a prompt.</p>
+        <p class="tour__cap" data-cap="6"  data-k="k276" data-en="Settle a term once, and say how firmly and how widely it holds.">Settle a term once, and say how firmly and how widely it holds.</p>
+        <p class="tour__cap" data-cap="7"  data-k="k277" data-en="Keep a distinction you need, instead of collapsing two words into one.">Keep a distinction you need, instead of collapsing two words into one.</p>
+        <p class="tour__cap" data-cap="8"  data-k="k278" data-en="Draft works under that guidance, then shows what broke it rather than hiding it.">Draft works under that guidance, then shows what broke it rather than hiding it.</p>
+        <p class="tour__cap" data-cap="9"  data-k="k279" data-en="A change arrives as a Suggestion. Accepted text is never silently rewritten.">A change arrives as a Suggestion. Accepted text is never silently rewritten.</p>
+        <p class="tour__cap" data-cap="10"  data-k="k280" data-en="Apply it, dismiss it, or ask why it was proposed.">Apply it, dismiss it, or ask why it was proposed.</p>
+        <p class="tour__cap" data-cap="11"  data-k="k281" data-en="Every change stays on the record, with the reason beside it.">Every change stays on the record, with the reason beside it.</p>
+        <p class="tour__cap" data-cap="12"  data-k="k282" data-en="Save a version, compare it, or return to it later.">Save a version, compare it, or return to it later.</p>
+
+        <div class="tour__bar">
+          <div class="tour__dots" role="group" aria-label="Demonstration steps"></div>
+          <button type="button" class="tour__more" data-tour="more"  data-k="k283" data-en="How this works">How this works</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- deeper explanation, per chapter -->
+    <div class="modal" id="tourModal" hidden data-tour="modal">
+      <div class="modal__scrim" data-tour="close"></div>
+      <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal__hd">
+          <p class="modal__t" id="modalTitle" data-chapter="explore"  data-k="k284" data-en="Explore in context">Explore in context</p>
+          <p class="modal__t" data-chapter="guide"  data-k="k285" data-en="Guide the translation">Guide the translation</p>
+          <p class="modal__t" data-chapter="revise"  data-k="k286" data-en="Revise with control">Revise with control</p>
+          <button type="button" class="modal__x" data-tour="close" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+
+        <div class="modal__body" data-chapter="explore">
+          <p class="modal__lead"  data-k="k287" data-en="Reading before deciding. Raw chat makes you collect and paste the context yourself; here the workspace already knows which source and target belong together.">Reading before deciding. Raw chat makes you collect and paste the context yourself; here the workspace already knows which source and target belong together.</p>
+          <dl class="modal__map">
+            <dt  data-k="k288" data-en="Centre gutter">Centre gutter</dt>
+            <dd  data-k="k289" data-en="Draws the linked passage. A complete, non-crossing match of one or more source Lines to one or more target Lines &mdash; so one sentence becoming two keeps its relationship.">Draws the linked passage. A complete, non-crossing match of one or more source Lines to one or more target Lines &mdash; so one sentence becoming two keeps its relationship.</dd>
+            <dt  data-k="k290" data-en="Ask panel">Ask panel</dt>
+            <dd  data-k="k291" data-en="A question about a selection, answered in editorial context. The context row sets how far the question may read: passage, paragraph, or document.">A question about a selection, answered in editorial context. The context row sets how far the question may read: passage, paragraph, or document.</dd>
+            <dt  data-k="k292" data-en="Answer">Answer</dt>
+            <dd  data-k="k293" data-en="Names what it drew on. An answer that proposes wording becomes a Suggestion; it does not edit the text by itself.">Names what it drew on. An answer that proposes wording becomes a Suggestion; it does not edit the text by itself.</dd>
+          </dl>
+        </div>
+
+        <div class="modal__body" data-chapter="guide">
+          <p class="modal__lead"  data-k="k294" data-en="Deciding once, for every place it applies. Fixing one sentence changes a phrase; setting a rule sets the standard the rest of the work is held to.">Deciding once, for every place it applies. Fixing one sentence changes a phrase; setting a rule sets the standard the rest of the work is held to.</p>
+          <dl class="modal__map">
+            <dt  data-k="k295" data-en="Terms &amp; Guidance">Terms &amp; Guidance</dt>
+            <dd  data-k="k296" data-en="Glossary, tone and distinctions for the project. A rule is Always, Prefer or Avoid, and carries the scope it holds over &mdash; one occurrence, a passage, a section, the document, or the project.">Glossary, tone and distinctions for the project. A rule is Always, Prefer or Avoid, and carries the scope it holds over &mdash; one occurrence, a passage, a section, the document, or the project.</dd>
+            <dt  data-k="k297" data-en="Draft and Polish">Draft and Polish</dt>
+            <dd  data-k="k298" data-en="Run under the active guidance rather than treating it as a disposable prompt, and the result is checked against it afterwards.">Run under the active guidance rather than treating it as a disposable prompt, and the result is checked against it afterwards.</dd>
+            <dt  data-k="k299" data-en="Conflicts">Conflicts</dt>
+            <dd  data-k="k300" data-en="A Line that breaks a rule is shown, not quietly reconciled. Guidance you have not written yet can also be proposed as a Candidate for you to approve or ignore.">A Line that breaks a rule is shown, not quietly reconciled. Guidance you have not written yet can also be proposed as a Candidate for you to approve or ignore.</dd>
+          </dl>
+        </div>
+
+        <div class="modal__body" data-chapter="revise">
+          <p class="modal__lead"  data-k="k301" data-en="Changing text without losing the account of it. After the first draft, no AI change lands in accepted text on its own.">Changing text without losing the account of it. After the first draft, no AI change lands in accepted text on its own.</p>
+          <dl class="modal__map">
+            <dt  data-k="k302" data-en="Suggestion">Suggestion</dt>
+            <dd  data-k="k303" data-en="A proposed change with Apply, Dismiss and Explain, anchored to the Line it belongs to. It goes stale rather than applying itself if the Line moves on.">A proposed change with Apply, Dismiss and Explain, anchored to the Line it belongs to. It goes stale rather than applying itself if the Line moves on.</dd>
+            <dt  data-k="k304" data-en="Revisions">Revisions</dt>
+            <dd  data-k="k305" data-en="The record of what changed and why, per Line &mdash; the applied suggestion, the rule that prompted it, and the pass it came from.">The record of what changed and why, per Line &mdash; the applied suggestion, the rule that prompted it, and the pass it came from.</dd>
+            <dt  data-k="k306" data-en="Saved versions and Editions">Saved versions and Editions</dt>
+            <dd  data-k="k307" data-en="Name a state you can return to, compare two of them side by side, or carry a literal reading and a publishable one at once and move only the decisions you want.">Name a state you can return to, compare two of them side by side, or carry a literal reading and a publishable one at once and move only the decisions you want.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -794,8 +969,8 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
       <div class="psec__left">
         <div class="psec__lead">
           <div class="psec__wm">
-            <p class="eyebrow"  data-k="k30" data-en="When you polish a first pass">When you polish a first pass</p>
-            <div class="wm"><b  data-k="k31" data-en="Manuscript">Manuscript</b></div>
+            <p class="eyebrow"  data-k="k30" data-en="Before you decide">Before you decide</p>
+            <div class="wm"><b  data-k="k31" data-en="Explore in context">Explore in context</b></div>
           </div>
           <p class="lead"  data-k="k33" data-en="Lost track of how far you got through the first pass?">Lost track of how far you got through the first pass?</p>
         </div>
@@ -925,8 +1100,8 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
       <div class="psec__left">
         <div class="psec__lead">
           <div class="psec__wm">
-            <p class="eyebrow"  data-k="k64" data-en="When you settle a term">When you settle a term</p>
-            <div class="wm"><b  data-k="k65" data-en="Terminology">Terminology</b></div>
+            <p class="eyebrow"  data-k="k64" data-en="Before the first draft">Before the first draft</p>
+            <div class="wm"><b  data-k="k65" data-en="Guide the translation">Guide the translation</b></div>
           </div>
           <p class="lead"  data-k="k67" data-en="Hunting for the places where one word came out three ways?">Hunting for the places where one word came out three ways?</p>
         </div>
@@ -1049,8 +1224,8 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
       <div class="psec__left">
         <div class="psec__lead">
           <div class="psec__wm">
-            <p class="eyebrow"  data-k="k96" data-en="When you take a step back">When you take a step back</p>
-            <div class="wm"><b  data-k="k97" data-en="History">History</b></div>
+            <p class="eyebrow"  data-k="k96" data-en="After the draft">After the draft</p>
+            <div class="wm"><b  data-k="k97" data-en="Revise with control">Revise with control</b></div>
           </div>
           <p class="lead"  data-k="k99" data-en="Need to explain why a sentence came out that way?">Need to explain why a sentence came out that way?</p>
         </div>
@@ -1377,9 +1552,9 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
     { id:'hero',       en:'Hero' },
     { id:'mockup',     en:'Workspace' },
     { id:'makers',     en:'Makers' },
-    { id:'manuscript', en:'Manuscript' },
-    { id:'terms',      en:'Terminology' },
-    { id:'history',    en:'History' },
+    { id:'manuscript', en:'Explore in context' },
+    { id:'terms',      en:'Guide the translation' },
+    { id:'history',    en:'Revise with control' },
     { id:'safety',     en:'Safety' },
     { id:'pricing',    en:'Pricing' },
     { id:'faq',        en:'FAQ' }
@@ -1810,31 +1985,156 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
     else toggleVis(id);
   });
 
-  /* ── the hero tabs drive the mockup ───────────────────────
-     One control, three views of the same workspace. The three full
-     sections below stay the scroll-through path, because a tab hides
-     what it does not select. */
-  var SIDE_TAB = { manuscript:'ask', terms:'constraints', history:'versions' };
-  var viewTabs = app.querySelectorAll('[data-view]');
+  /* ── the running demonstration ────────────────────────────
+     The workspace plays through twelve steps in three chapters, one per
+     hero tab. It runs on its own so the product is doing something the
+     moment you arrive, and it yields the instant you touch it. */
+  var LAST_STEP = 12;
+  var CHAPTERS = {
+    explore: { from: 1,  to: 4  },
+    guide:   { from: 5,  to: 8  },
+    revise:  { from: 9,  to: 12 }
+  };
+  var SIDE_BY_STEP = {
+    1:'ask', 2:'ask', 3:'ask', 4:'ask',
+    5:'terms', 6:'terms', 7:'terms', 8:'terms',
+    9:'review', 10:'review', 11:'versions', 12:'versions'
+  };
 
-  function setView(v){
-    if (!SIDE_TAB[v]) v = 'manuscript';
-    viewTabs.forEach(function(b){
-      b.setAttribute('aria-selected', String(b.getAttribute('data-view') === v));
-    });
-    app.querySelectorAll('[data-view-for]').forEach(function(el){
-      el.hidden = el.getAttribute('data-view-for') !== v;
-    });
-    app.querySelectorAll('[data-side-tab]').forEach(function(el){
-      if (el.getAttribute('data-side-tab') === SIDE_TAB[v])
-        el.setAttribute('aria-selected', 'true');
-      else el.removeAttribute('aria-selected');
+  var step = 1, tourTimer = null, tourPaused = false, tourStopped = false;
+  var viewTabs = app.querySelectorAll('[data-view]');
+  var dotWrap = app.querySelector('.tour__dots');
+  var modal = document.getElementById('tourModal');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function chapterOf(n){
+    for (var k in CHAPTERS)
+      if (n >= CHAPTERS[k].from && n <= CHAPTERS[k].to) return k;
+    return 'explore';
+  }
+
+  /* data-steps / data-hl take "3", "5-8" or "1,4,9" */
+  function inSpec(spec, n){
+    var parts = spec.split(',');
+    for (var i = 0; i < parts.length; i++){
+      var p = parts[i].trim(), dash = p.indexOf('-');
+      if (dash > 0){
+        if (n >= +p.slice(0, dash) && n <= +p.slice(dash + 1)) return true;
+      } else if (+p === n) return true;
+    }
+    return false;
+  }
+
+  function buildDots(){
+    if (!dotWrap) return;
+    for (var i = 1; i <= LAST_STEP; i++){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('data-goto', String(i));
+      b.setAttribute('aria-label', 'Step ' + i);
+      dotWrap.appendChild(b);
+    }
+    dotWrap.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('[data-goto]') : null;
+      if (!b) return;
+      tourStopped = true;
+      stopTour();
+      setStep(+b.getAttribute('data-goto'));
     });
   }
 
+  function setStep(n){
+    if (n < 1) n = 1;
+    if (n > LAST_STEP) n = 1;
+    step = n;
+    var ch = chapterOf(n);
+    var frame = app.querySelector('.app');
+    if (frame) frame.setAttribute('data-ch', ch);
+
+    app.querySelectorAll('[data-steps]').forEach(function(el){
+      el.hidden = !inSpec(el.getAttribute('data-steps'), n);
+    });
+    app.querySelectorAll('[data-hl]').forEach(function(el){
+      el.classList.toggle('is-hl', inSpec(el.getAttribute('data-hl'), n));
+    });
+    app.querySelectorAll('[data-cap]').forEach(function(el){
+      el.hidden = +el.getAttribute('data-cap') !== n;
+    });
+    app.querySelectorAll('[data-chapter]').forEach(function(el){
+      el.hidden = el.getAttribute('data-chapter') !== ch;
+    });
+    app.querySelectorAll('[data-side-tab]').forEach(function(el){
+      if (el.getAttribute('data-side-tab') === SIDE_BY_STEP[n])
+        el.setAttribute('aria-selected', 'true');
+      else el.removeAttribute('aria-selected');
+    });
+    viewTabs.forEach(function(b){
+      b.setAttribute('aria-selected', String(b.getAttribute('data-view') === ch));
+    });
+    if (dotWrap) dotWrap.querySelectorAll('[data-goto]').forEach(function(b){
+      var i = +b.getAttribute('data-goto');
+      b.classList.toggle('is-now', i === n);
+      b.classList.toggle('is-done', i < n);
+    });
+  }
+
+  function stopTour(){
+    if (tourTimer) clearInterval(tourTimer);
+    tourTimer = null;
+  }
+  function playTour(){
+    stopTour();
+    if (tourStopped || calm) return;
+    tourTimer = setInterval(function(){
+      if (!tourPaused && !editing) setStep(step + 1);
+    }, 3600);
+  }
+
+  /* hovering is reading, not taking over: it pauses and gives back */
+  var stage = app.querySelector('.mock');
+  if (stage){
+    stage.addEventListener('pointerenter', function(){ tourPaused = true; });
+    stage.addEventListener('pointerleave', function(){ tourPaused = false; });
+    stage.addEventListener('focusin', function(){ tourPaused = true; });
+    stage.addEventListener('focusout', function(){ tourPaused = false; });
+  }
+
   viewTabs.forEach(function(b){
-    b.addEventListener('click', function(){ setView(b.getAttribute('data-view')); });
+    b.addEventListener('click', function(){
+      var ch = CHAPTERS[b.getAttribute('data-view')];
+      if (!ch) return;
+      setStep(ch.from);
+      playTour();          /* a chapter jump keeps it running */
+    });
   });
+
+  /* deeper explanation for the chapter on screen */
+  function openModal(){
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    tourPaused = true;
+    var x = modal.querySelector('.modal__x');
+    if (x) x.focus();
+  }
+  function closeModal(){
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    tourPaused = false;
+  }
+  app.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('[data-tour]') : null;
+    if (!t) return;
+    var act = t.getAttribute('data-tour');
+    if (act === 'more') openModal();
+    else if (act === 'close') closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeModal();
+  });
+
+  buildDots();
 
   /* ── inline text editing ──────────────────────────────── */
   function esc(t){
@@ -1908,7 +2208,7 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
     var t = e.target.closest ? e.target.closest('a,button') : null;
     if (!t) return;
     if (t.closest('#edbar') || t.closest('#edpanel') || t.closest('.secbar')
-        || t.hasAttribute('data-view')) return;
+        || t.hasAttribute('data-view') || t.closest('.tour') || t.closest('.modal')) return;
     e.preventDefault();
     e.stopPropagation();
   }, true);
@@ -2105,7 +2405,8 @@ footer{background:var(--bg-2);border-top:.5px solid var(--line)}
   buildChips();
 
   setLang();
-  setView('manuscript');
+  setStep(1);
+  playTour();
   onScroll();
 
   try { draftRaw = localStorage.getItem(DRAFT); } catch (e) {}
