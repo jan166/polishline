@@ -608,6 +608,40 @@ body.modal-open{overflow:hidden}
   .tour__dots button{transition:none}
 }
 
+/* ── hotspots: a place worth pressing ────────────────────── */
+.mock__inner{position:relative}
+.cell--gut,.scope,.grule,.ln__m,.scard__acts,.vtrail{position:relative}
+
+.spot{position:absolute;z-index:6;width:15px;height:15px;border-radius:50%;
+  display:grid;place-items:center;background:var(--t2-ink);
+  box-shadow:0 0 0 2.5px color-mix(in srgb,var(--bg) 88%,transparent);cursor:pointer}
+.spot--c{top:50%;left:50%;transform:translate(-50%,-50%)}
+.spot--tr{top:-7px;right:-7px}
+.spot i{position:absolute;inset:0;border-radius:50%;background:var(--t2-ink);
+  animation:spotPing 2.4s cubic-bezier(.2,.6,.3,1) infinite}
+.spot i:last-child{animation-delay:1.2s}
+.spot::after{content:"";position:relative;width:5px;height:5px;border-radius:50%;background:var(--bg)}
+.spot:hover{background:var(--ink)}
+.spot:hover::after{background:var(--bg)}
+.spot.is-open{background:var(--ink)}
+.spot.is-open i{animation:none;opacity:0}
+@keyframes spotPing{
+  0%{transform:scale(1);opacity:.5}
+  70%{transform:scale(3);opacity:0}
+  100%{transform:scale(3);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){ .spot i{animation:none;opacity:0} }
+
+.pop{position:absolute;z-index:40;width:min(320px,86vw);padding:13px 15px 15px;
+  background:var(--bg);border:.5px solid var(--line-2);border-radius:13px;
+  box-shadow:0 16px 40px -14px rgba(15,22,32,.45)}
+.pop__x{position:absolute;top:7px;right:7px;width:24px;height:24px;display:grid;place-items:center;
+  border-radius:6px;color:var(--ink-3)}
+.pop__x:hover{background:var(--bg-3);color:var(--ink)}
+.pop__x svg{width:15px;height:15px}
+.pop__t{font-size:13px;font-weight:600;letter-spacing:-.012em;padding-right:22px;margin-bottom:6px}
+.pop__d{font-size:12.5px;line-height:1.58;color:var(--ink-2)}
+
 /* ── edit mode: outline panel, block chips ──────────────── */
 .edbar__sep{width:1px;height:20px;background:var(--line);flex-shrink:0}
 .edbtn--ghost{border-color:transparent}
@@ -751,7 +785,7 @@ body.modal-open{overflow:hidden}
             </div>
 
             <div class="cell cell--src" data-hl="3,4"><p class="ln__t"  data-k="k196" data-en="Esa pr&aacute;ctica se endurece en costumbre,">Esa pr&aacute;ctica se endurece en costumbre,</p></div>
-            <div class="cell cell--gut" style="grid-row:span 2" data-hl="3,4" aria-hidden="true">
+            <div class="cell cell--gut" style="grid-row:span 2" data-hl="3,4" aria-hidden="true"><button type="button" class="spot spot--c" data-spot="gutter" data-steps="1-4" aria-label="About the linked passage"><i></i><i></i></button>
               <svg class="brk" viewBox="0 0 24 100" preserveAspectRatio="none" stroke="currentColor" aria-hidden="true"><path d="M3 14h9v72H3M12 50h9" vector-effect="non-scaling-stroke"/></svg>
             </div>
             <div class="cell cell--tgt" style="grid-row:span 2" data-hl="1,2,3,4">
@@ -770,7 +804,7 @@ body.modal-open{overflow:hidden}
             <div class="cell cell--tgt cell--last" data-hl="8,9,10">
               <p class="ln__t" data-steps="1-9"  data-k="k202" data-en="The record calls that &lt;span class=&quot;flagw&quot;&gt;custom&lt;/span&gt; back.">The record calls that <span class="flagw">custom</span> back.</p>
               <p class="ln__t" data-steps="10-12"  data-k="k248" data-en="The record calls that &lt;span class=&quot;term&quot;&gt;practice&lt;/span&gt; back.">The record calls that <span class="term">practice</span> back.</p>
-              <span class="ln__m" data-steps="8,9"><span class="tag tag--flag"><i></i><span  data-k="k203" data-en="Flagged">Flagged</span></span></span>
+              <span class="ln__m" data-steps="8,9"><button type="button" class="spot spot--tr" data-spot="flag" data-steps="8,9" aria-label="About work markers"><i></i><i></i></button><span class="tag tag--flag"><i></i><span  data-k="k203" data-en="Flagged">Flagged</span></span></span>
               <span class="ln__m" data-steps="10-12"><span class="tag tag--edit"><i></i><span  data-k="k249" data-en="Edited">Edited</span></span></span>
             </div>
           </div>
@@ -792,7 +826,7 @@ body.modal-open{overflow:hidden}
               <div class="scard" data-steps="2-4">
                 <p class="scard__hd"  data-k="k251" data-en="Ask">Ask</p>
                 <p class="ask__q"  data-k="k232" data-en="Why settles into and not hardens into?">Why settles into and not hardens into?</p>
-                <div class="scope" data-hl="2">
+                <div class="scope" data-hl="2"><button type="button" class="spot spot--tr" data-spot="scope" data-steps="2-4" aria-label="About context scope"><i></i><i></i></button>
                   <span class="scope__l"  data-k="k252" data-en="Context">Context</span>
                   <span class="chip2"  data-k="k253" data-en="Passage">Passage</span>
                   <span class="chip2 is-on"  data-k="k254" data-en="Paragraph">Paragraph</span>
@@ -808,7 +842,7 @@ body.modal-open{overflow:hidden}
               <div class="scard">
                 <p class="scard__hd"  data-k="k208" data-en="Terms &amp; Guidance">Terms &amp; Guidance</p>
                 <p class="scard__t" data-steps="5"  data-k="k256" data-en="Set what to unify and what to keep apart, before the first draft.">Set what to unify and what to keep apart, before the first draft.</p>
-                <div class="grule" data-steps="6-8" data-hl="6">
+                <div class="grule" data-steps="6-8" data-hl="6"><button type="button" class="spot spot--tr" data-spot="rule" data-steps="6-8" aria-label="About a rule"><i></i><i></i></button>
                   <span class="rule"  data-k="k209" data-en="pr&aacute;ctica &rarr; practice">pr&aacute;ctica &rarr; practice</span>
                   <span class="grule__m"><span class="chip2 is-on"  data-k="k257" data-en="Always">Always</span><span class="chip2"  data-k="k258" data-en="Document">Document</span></span>
                 </div>
@@ -831,7 +865,7 @@ body.modal-open{overflow:hidden}
                   <span class="was"  data-k="k213" data-en="The record calls that custom back.">The record calls that custom back.</span>
                   <span class="now"  data-k="k214" data-en="The record calls that practice back.">The record calls that practice back.</span>
                 </div>
-                <div class="scard__acts" data-hl="10">
+                <div class="scard__acts" data-hl="10"><button type="button" class="spot spot--tr" data-spot="apply" data-steps="9,10" aria-label="About suggestions"><i></i><i></i></button>
                   <span class="go"  data-k="k215" data-en="Apply">Apply</span>
                   <span  data-k="k216" data-en="Dismiss">Dismiss</span>
                   <span  data-k="k262" data-en="Explain">Explain</span>
@@ -843,7 +877,7 @@ body.modal-open{overflow:hidden}
             <div class="side__body" data-steps="11-12">
               <div class="scard">
                 <p class="scard__hd"  data-k="k236" data-en="Revisions &middot; this Line">Revisions &middot; this Line</p>
-                <div class="vtrail">
+                <div class="vtrail"><button type="button" class="spot spot--tr" data-spot="trail" data-steps="11,12" aria-label="About revisions"><i></i><i></i></button>
                   <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k237" data-en="16:04">16:04</b> <span  data-k="k238" data-en="suggestion applied">suggestion applied</span><br><span class="vsub"  data-k="k239" data-en="custom &rarr; practice">custom &rarr; practice</span></span></div>
                   <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k240" data-en="15:51">15:51</b> <span  data-k="k241" data-en="rule set">rule set</span><br><span class="vsub"  data-k="k242" data-en="pr&aacute;ctica to practice &middot; Always">pr&aacute;ctica to practice &middot; Always</span></span></div>
                   <div class="vev"><span class="vdot" aria-hidden="true"></span><span><b  data-k="k243" data-en="15:12">15:12</b> <span  data-k="k244" data-en="first pass">first pass</span></span></div>
@@ -867,6 +901,37 @@ body.modal-open{overflow:hidden}
           </span>
         </div>
       </figure>
+
+
+      <div class="pop" id="spotPop" hidden>
+        <button type="button" class="pop__x" data-tour="pop-close" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+        <div class="pop__in" data-pop="gutter">
+          <p class="pop__t"  data-k="k308" data-en="Linked passage">Linked passage</p>
+          <p class="pop__d"  data-k="k309" data-en="A complete match between one or more source Lines and one or more target Lines. Sentence boundaries do not have to agree &mdash; here two source Lines answer to one translated Line &mdash; and editing either side keeps the match.">A complete match between one or more source Lines and one or more target Lines. Sentence boundaries do not have to agree &mdash; here two source Lines answer to one translated Line &mdash; and editing either side keeps the match.</p>
+        </div>
+        <div class="pop__in" data-pop="scope" hidden>
+          <p class="pop__t"  data-k="k310" data-en="You choose the context">You choose the context</p>
+          <p class="pop__d"  data-k="k311" data-en="How far the question may read: the linked passage, the paragraph around it, or the whole document. Nothing has to be collected and pasted into a chat first.">How far the question may read: the linked passage, the paragraph around it, or the whole document. Nothing has to be collected and pasted into a chat first.</p>
+        </div>
+        <div class="pop__in" data-pop="rule" hidden>
+          <p class="pop__t"  data-k="k312" data-en="A rule, not a prompt">A rule, not a prompt</p>
+          <p class="pop__d"  data-k="k313" data-en="Always, Prefer or Avoid, carrying the reach it holds over &mdash; one occurrence, a passage, a section, the document, or the project. Draft and Polish work under it, and the result is checked against it afterwards.">Always, Prefer or Avoid, carrying the reach it holds over &mdash; one occurrence, a passage, a section, the document, or the project. Draft and Polish work under it, and the result is checked against it afterwards.</p>
+        </div>
+        <div class="pop__in" data-pop="flag" hidden>
+          <p class="pop__t"  data-k="k314" data-en="Shown, not quietly reconciled">Shown, not quietly reconciled</p>
+          <p class="pop__d"  data-k="k315" data-en="A Line that breaks a rule is marked rather than silently fixed. The marker is a state of the work &mdash; Drafted, Edited, Needs review, Flagged &mdash; not a score of it.">A Line that breaks a rule is marked rather than silently fixed. The marker is a state of the work &mdash; Drafted, Edited, Needs review, Flagged &mdash; not a score of it.</p>
+        </div>
+        <div class="pop__in" data-pop="apply" hidden>
+          <p class="pop__t"  data-k="k316" data-en="Never applied on its own">Never applied on its own</p>
+          <p class="pop__d"  data-k="k317" data-en="After the first draft, an AI change reaches your text only as a Suggestion. Apply it, dismiss it, or ask why it was proposed. If the Line moves on, the suggestion goes stale instead of landing.">After the first draft, an AI change reaches your text only as a Suggestion. Apply it, dismiss it, or ask why it was proposed. If the Line moves on, the suggestion goes stale instead of landing.</p>
+        </div>
+        <div class="pop__in" data-pop="trail" hidden>
+          <p class="pop__t"  data-k="k318" data-en="What changed, and why">What changed, and why</p>
+          <p class="pop__d"  data-k="k319" data-en="Per Line: the applied suggestion, the rule that prompted it, and the pass it came from. Save a version you can return to, or compare two of them side by side.">Per Line: the applied suggestion, the rule that prompted it, and the pass it came from. Save a version you can return to, or compare two of them side by side.</p>
+        </div>
+      </div>
 
       <!-- what you are watching -->
       <div class="tour">
@@ -2071,6 +2136,7 @@ body.modal-open{overflow:hidden}
     viewTabs.forEach(function(b){
       b.setAttribute('aria-selected', String(b.getAttribute('data-view') === ch));
     });
+    if (typeof closePop === 'function') closePop();
     if (dotWrap) dotWrap.querySelectorAll('[data-goto]').forEach(function(b){
       var i = +b.getAttribute('data-goto');
       b.classList.toggle('is-now', i === n);
@@ -2123,15 +2189,67 @@ body.modal-open{overflow:hidden}
     document.body.classList.remove('modal-open');
     tourPaused = false;
   }
+  /* ── hotspots ─────────────────────────────────────────────
+     A pulsing mark on a region of the workspace, answering what that
+     region is. Pressing one is taking the demonstration over, so the
+     tour stops rather than moving the thing being asked about. */
+  var pop = document.getElementById('spotPop');
+  var openSpot = null;
+
+  function closePop(){
+    if (!pop || pop.hidden) return;
+    pop.hidden = true;
+    if (openSpot) openSpot.classList.remove('is-open');
+    openSpot = null;
+  }
+
+  function placePop(spot){
+    var host = app.querySelector('.mock__inner');
+    if (!host || !pop) return;
+    var h = host.getBoundingClientRect(), r = spot.getBoundingClientRect();
+    var w = pop.offsetWidth, ht = pop.offsetHeight;
+    var left = (r.left - h.left) + r.width / 2 - w / 2;
+    left = Math.max(8, Math.min(left, h.width - w - 8));
+    var top = (r.top - h.top) - ht - 12;
+    if (top < 4) top = (r.bottom - h.top) + 12;    /* below when there is no room above */
+    pop.style.left = Math.round(left) + 'px';
+    pop.style.top = Math.round(top) + 'px';
+  }
+
+  function openPopFor(spot){
+    if (!pop) return;
+    var key = spot.getAttribute('data-spot');
+    if (openSpot === spot){ closePop(); return; }
+    closePop();
+    pop.querySelectorAll('[data-pop]').forEach(function(el){
+      el.hidden = el.getAttribute('data-pop') !== key;
+    });
+    pop.hidden = false;
+    placePop(spot);
+    spot.classList.add('is-open');
+    openSpot = spot;
+    tourStopped = true;
+    stopTour();
+  }
+
   app.addEventListener('click', function(e){
+    var spot = e.target.closest ? e.target.closest('[data-spot]') : null;
+    if (spot){ openPopFor(spot); return; }
     var t = e.target.closest ? e.target.closest('[data-tour]') : null;
-    if (!t) return;
-    var act = t.getAttribute('data-tour');
-    if (act === 'more') openModal();
-    else if (act === 'close') closeModal();
+    if (t){
+      var act = t.getAttribute('data-tour');
+      if (act === 'more') openModal();
+      else if (act === 'close') closeModal();
+      else if (act === 'pop-close') closePop();
+      return;
+    }
+    if (pop && !pop.hidden && !(e.target.closest && e.target.closest('#spotPop'))) closePop();
   });
+  window.addEventListener('resize', function(){ if (openSpot) placePop(openSpot); });
   document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') closeModal();
+    if (e.key !== 'Escape') return;
+    closeModal();
+    closePop();
   });
 
   buildDots();
@@ -2208,7 +2326,7 @@ body.modal-open{overflow:hidden}
     var t = e.target.closest ? e.target.closest('a,button') : null;
     if (!t) return;
     if (t.closest('#edbar') || t.closest('#edpanel') || t.closest('.secbar')
-        || t.hasAttribute('data-view') || t.closest('.tour') || t.closest('.modal')) return;
+        || t.hasAttribute('data-view') || t.closest('.mock')) return;
     e.preventDefault();
     e.stopPropagation();
   }, true);
